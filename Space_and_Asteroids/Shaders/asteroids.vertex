@@ -1,0 +1,45 @@
+#version 330 core
+
+layout (location = 0) in vec3 aPos;
+layout (location = 1) in vec3 aNormal; 
+layout (location = 2) in vec2 aTexCoords;
+layout (location = 3) in mat4 aInstanceMatrix;
+layout (location = 7) in float aRotationSpeed;
+
+out vec3 fragPos;
+out vec2 texCoords;
+out vec3 normal;
+
+uniform mat4 projection;
+uniform mat4 view;
+uniform float uTime;
+
+void main()
+{
+    //calculate cumulated rotation angle
+    float angle = radians(uTime * aRotationSpeed);
+
+    //rotation matrix (along y-axis)
+    mat4 rotation = mat4(
+        cos(angle), 0.0, -sin(angle), 0.0,
+        0.0,        1.0, 0.0,         0.0,
+        sin(angle), 0.0, cos(angle),  0.0,
+        0.0,        0.0, 0.0,         1.0
+    );
+
+    mat4 rovolve = mat4(
+        cos(angle * 0.01f), 0.0, -sin(angle * 0.01f),   0.0,
+        0.0,                1.0,  0.0,                  0.0,
+        sin(angle * 0.01f), 0.0,  cos(angle * 0.01f),   0.0,
+        0.0,                0.0,  0.0,                  1.0
+    );
+
+    mat4 instanceModel = rovolve * aInstanceMatrix * rotation;
+
+    mat3 normalMatrix = mat3(transpose(inverse(instanceModel)));
+    normal = normalMatrix * aNormal;
+
+    fragPos = vec3(instanceModel * vec4(aPos, 1.0));
+    texCoords = aTexCoords;
+    gl_Position = projection * view * instanceModel * vec4(aPos, 1.0f); 
+}
