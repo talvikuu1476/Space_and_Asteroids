@@ -5,7 +5,7 @@
 This project is still being developed.
 
 To run the program, libraries of OpenGL, assimp, glad, GLFW, glm are necessary. Please set up your own include and library directories based on your local environment.
-Please use Visual Studio 2022 to run the program, and please DO NOT open the .exe file directly.
+Please use Visual Studio 2022 to run the program (via Space_and_Asteroids.sln), and please DO NOT open the .exe file directly.
 
 Key Features:
 1. Camera System
