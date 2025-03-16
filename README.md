@@ -31,12 +31,3 @@ Performance Optimisations:
 1. Face Culling
 2. Instanced Rendering for asteriods
 3. Texture Reuse Validation
-
-Technical Architecture:
- [Input System]   →        [Camera]         →  [Rendering Pipeline]
-                                                        ↓
-[Shader System]   ←   [Vertex Processing]   ←    [Instance Data]
-       ↓
-   [MSAA FBO]     →    [Post-Processing]    →    [Screen Output]
-                               ↑
-                 [Skybox System] [Model System]
