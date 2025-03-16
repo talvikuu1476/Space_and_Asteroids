@@ -35,8 +35,10 @@ float lastX = screenWidth / 2.0f;
 float lastY = screenHeight / 2.0f;
 
 //light
-glm::vec3 lightPos(-500.0f, 500.0f, -500.0f);
+glm::vec3 lightPos(-500.0f, 0.0f, 500.0f);
 glm::vec3 lightColour(7.5f, 7.5f, 7.5f);
+float lightOrbitRadius = 1500.0f;
+float lightOrbitSpeed = 0.2f;
 
 //update window size
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
@@ -455,7 +457,7 @@ int main()
 
 	float planetRotationSpeed = 2.5f;
 
-	glfwMakeContextCurrent(window); // 绑定 OpenGL 上下文
+	glfwMakeContextCurrent(window);
 
 	float lastTime = glfwGetTime();
 	int frameCount = 0;
@@ -486,6 +488,19 @@ int main()
 
 		glEnable(GL_DEPTH_TEST);
 
+		//update light position
+		float rotateAngle = currentFrame * lightOrbitSpeed;
+		glm::vec3 rotateAxis = glm::vec3(0.707f, 0.707f, 0.0f);
+		glm::vec3 initialPos = glm::vec3(lightOrbitRadius, 0.0f, 0.0f);
+
+		glm::mat4 rotationMatrix = glm::rotate(glm::mat4(1.0f), rotateAngle, glm::vec3(0.0f, 1.0f, 0.0f));
+		glm::mat4 tiltMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(45.0f), rotateAxis);
+
+		glm::vec4 rotatePos = rotationMatrix * glm::vec4(initialPos, 1.0f);
+		glm::vec4 finalPos = tiltMatrix * rotatePos;
+
+		lightPos = glm::vec3(finalPos);
+
 		//process transforms
 		glm::mat4 model, view, projection;
 
@@ -504,7 +519,7 @@ int main()
 		planetShader.setMat4("view", camera.GetViewMatrix());
 		planetShader.setMat4("projection", projection);
 
-		//rendering planet
+		//render planet
 		float planetRotationAngle = currentFrame * planetRotationSpeed;
 
 		model = glm::mat4(1.0f); //reset as identity matrix
@@ -523,7 +538,7 @@ int main()
 		planetShader.setVec3("light.specular", glm::vec3(0.0f));
 		planet.Draw(planetShader);
 
-		//rendering asteroids
+		//render asteroids
 		asteroidsShader.use();
 		asteroidsShader.setInt("material.texture_diffuse1", 0);
 		asteroidsShader.setFloat("material.shininess", 64.0);
@@ -531,14 +546,13 @@ int main()
 		asteroidsShader.setVec3("light.lightPos", lightPos);
 		asteroidsShader.setVec3("light.ambient", glm::vec3(0.1f));
 		asteroidsShader.setVec3("light.diffuse", glm::vec3(0.8f));
-		asteroidsShader.setVec3("light.specular", glm::vec3(0.2f));
+		asteroidsShader.setVec3("light.specular", glm::vec3(0.05f));
 
 		asteroidsShader.setVec3("cameraPos", camera.Position);
 
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, rock.textures_loaded[0].id);
 
-		//rendering rocks
 		for (unsigned int i = 0; i < rock.meshes.size(); i++)
 		{
 			glBindVertexArray(rock.meshes[i].VAO);
@@ -547,13 +561,13 @@ int main()
 			glBindVertexArray(0);
 		}
 
-		// draw skybox as last
+		//draw skybox as last
 		glDepthFunc(GL_LEQUAL);  //change depth function so depth test passes when values are equal to depth buffer's content
 		skyboxShader.use();
 		view = glm::mat4(glm::mat3(camera.GetViewMatrix())); //remove translation from the view matrix
 		skyboxShader.setMat4("view", view);
 		skyboxShader.setMat4("projection", projection);
-		// skybox cube
+		//skybox cube
 		glBindVertexArray(skyboxVAO);
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
