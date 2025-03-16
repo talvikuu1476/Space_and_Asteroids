@@ -202,6 +202,7 @@ int main()
 	//enable depth test
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
+	glEnable(GL_CULL_FACE);
 
 	//enable MSAA
 	glEnable(GL_MULTISAMPLE);

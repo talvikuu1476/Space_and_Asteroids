@@ -1,7 +1,7 @@
 ﻿  Space_and_Asteroids.cpp
 D:\11\TA\Space_and_Asteroids\Space_and_Asteroids\Space_and_Asteroids\Space_and_Asteroids.cpp(58,14): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-D:\11\TA\Space_and_Asteroids\Space_and_Asteroids\Space_and_Asteroids\Space_and_Asteroids.cpp(368,65): warning C4312: 'type cast': conversion from 'GLsizei' to 'void *' of greater size
-D:\11\TA\Space_and_Asteroids\Space_and_Asteroids\Space_and_Asteroids\Space_and_Asteroids.cpp(370,65): warning C4312: 'type cast': conversion from 'GLsizei' to 'void *' of greater size
-D:\11\TA\Space_and_Asteroids\Space_and_Asteroids\Space_and_Asteroids\Space_and_Asteroids.cpp(372,65): warning C4312: 'type cast': conversion from 'GLsizei' to 'void *' of greater size
-D:\11\TA\Space_and_Asteroids\Space_and_Asteroids\Space_and_Asteroids\Space_and_Asteroids.cpp(459,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\11\TA\Space_and_Asteroids\Space_and_Asteroids\Space_and_Asteroids\Space_and_Asteroids.cpp(369,65): warning C4312: 'type cast': conversion from 'GLsizei' to 'void *' of greater size
+D:\11\TA\Space_and_Asteroids\Space_and_Asteroids\Space_and_Asteroids\Space_and_Asteroids.cpp(371,65): warning C4312: 'type cast': conversion from 'GLsizei' to 'void *' of greater size
+D:\11\TA\Space_and_Asteroids\Space_and_Asteroids\Space_and_Asteroids\Space_and_Asteroids.cpp(373,65): warning C4312: 'type cast': conversion from 'GLsizei' to 'void *' of greater size
+D:\11\TA\Space_and_Asteroids\Space_and_Asteroids\Space_and_Asteroids\Space_and_Asteroids.cpp(460,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   Space_and_Asteroids.vcxproj -> D:\11\TA\Space_and_Asteroids\Space_and_Asteroids\x64\Debug\Space_and_Asteroids.exe
