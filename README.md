@@ -14,7 +14,7 @@ Key Features:
    - move mouse to adjust vision cone orientation
    - WASD to move
    - SPACE and CTRL to up and down
-   - SCROLL to zoom in / out
+   - SCROLL UP & DOWN to zoom in & out
 2. Lighting System
    - applied Blinn-Phong reflection model on the planet and asteroid model
 3. Skybox
@@ -31,5 +31,5 @@ Visual Optimisations:
   
 Performance Optimisations:
 1. Face Culling
-2. Instanced Rendering for asteriods
+2. Instanced Rendering for Asteriods
 3. Texture Reuse Validation
