@@ -1,5 +1,5 @@
 # Space_and_Asteroids
- An OpenGL-based simulation of space, planets and asteroids, developed in C++.
+ An OpenGL-based simulator of space, planets and asteroids, developed in C++.
  
  ![Planet with Asteroids](https://github.com/user-attachments/assets/beeca90a-ead6-496c-981e-507a94499b92)
 
